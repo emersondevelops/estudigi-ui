@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {StudentService} from '../student.service';
+import {StudentService} from '../../../services/student.service';
 import {Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
@@ -20,12 +20,9 @@ export class StudentListComponent implements OnInit {
 
   dataSource;
   displayedColumns = [
-    'studentId',
     'name',
-    // 'sex',
-    // 'birthDate',
-    // 'email',
-    // 'registerDate'
+    'year',
+    'className'
   ];
   length: number;
   pageSize = 10;
@@ -43,10 +40,11 @@ export class StudentListComponent implements OnInit {
         this.sortDirection
       )
       .subscribe((results) => {
-        this.dataSource = new MatTableDataSource(results['content']);
+        this.dataSource = new MatTableDataSource(results.content);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        this.length = results['totalElements'];
+        this.length = results.totalElements;
+        // console.log(results.content);
       });
   }
 
@@ -72,7 +70,7 @@ export class StudentListComponent implements OnInit {
       )
       .subscribe((results) => {
         return (this.dataSource = new MatTableDataSource(
-          results["content"]
+          results.content
         ));
       });
   }

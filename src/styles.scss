@@ -2,7 +2,7 @@
 /* Tutorial used for building a custom Material Design theme: https://www.youtube.com/watch?v=dbRSSw6OAMw */
 
 html, body { height: 100%; }
-body { margin: 20px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import "~@angular/material/theming";
 
