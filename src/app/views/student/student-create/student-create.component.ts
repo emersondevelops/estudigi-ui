@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {StudentService} from '../../../services/student.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
     selector: 'app-student-create',
@@ -14,24 +14,27 @@ export class StudentCreateComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private studentService: StudentService
+        private userService: UserService
     ) {
     }
 
-
     ngOnInit(): void {
         this.studentForm = this.fb.group({
-            name: ['', [Validators.required]],
-            sex: ['', [Validators.required]],
-            birthDate: ['', {disabled: true}],
-            email: ['', [Validators.required]],
-            year: ['', [Validators.required]],
-            className: ['', [Validators.required]]
+            fullName: [null, [Validators.required]],
+            sex: [null, [Validators.required]],
+            birthDate: [null, [Validators.required]],
+            email: [null, {disabled: true}],
+            login: [null, {disabled: true}],
+            password: [null, {disabled: true}],
+            role: ['STUDENT', [Validators.required]],
+            phone: [null, {disabled: true}],
+            address: [null, {disabled: true}],
+            otherInfo: [null, {disabled: true}],
         });
     }
 
     createStudent(): void {
-        this.studentService.create(this.studentForm.value)
+        this.userService.create(this.studentForm.value)
             .subscribe(response => {});
         this.studentForm.reset();
     }

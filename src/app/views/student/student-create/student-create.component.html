@@ -2,7 +2,7 @@
     <form [formGroup]="studentForm">
         <mat-form-field appearance="fill">
             <mat-label>Nome completo</mat-label>
-            <input matInput formControlName="name" name="name" placeholder="">
+            <input matInput formControlName="fullName" name="fullName" placeholder="">
             <mat-hint></mat-hint>
         </mat-form-field>
 
@@ -20,24 +20,19 @@
             <mat-hint>Clique no ícone para definir uma data</mat-hint>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>E-mail</mat-label>
-            <input matInput type="email" formControlName="email" name="email" placeholder="">
-            <mat-hint></mat-hint>
-        </mat-form-field>
+<!--        <mat-form-field appearance="fill">-->
+<!--            <mat-label>Ano</mat-label>-->
+<!--            <input matInput formControlName="year" name="year" placeholder="">-->
+<!--            <mat-hint></mat-hint>-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field appearance="fill">
-            <mat-label>Ano</mat-label>
-            <input matInput formControlName="year" name="year" placeholder="">
-            <mat-hint></mat-hint>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Turma</mat-label>
-            <input matInput formControlName="className" name="className" placeholder="">
-            <mat-hint></mat-hint>
-        </mat-form-field>
+<!--        <mat-form-field appearance="fill">-->
+<!--            <mat-label>Turma</mat-label>-->
+<!--            <input matInput formControlName="className" name="className" placeholder="">-->
+<!--            <mat-hint></mat-hint>-->
+<!--        </mat-form-field>-->
     </form>
+    <br/>
     <button mat-raised-button color="primary" (click)="createStudent()">Adicionar</button>
     <button mat-raised-button routerLink="/">Voltar</button>
 </div>

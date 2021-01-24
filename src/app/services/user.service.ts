@@ -1,22 +1,28 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {Student} from '../models/student';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {UserModel} from '../models/user.model';
 import {Observable} from 'rxjs';
-import {PagedResponse} from '../models/pagedResponse';
+import {PagedResponseModel} from '../models/pagedResponse.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class StudentService {
+export class UserService {
 
-    baseUrl = `${environment.api}/students`;
+    baseUrl = `${environment.api}/user`;
+
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })
+    };
 
     constructor(private http: HttpClient) {
     }
 
-    public create(student: Student): Observable<Student> {
-        return this.http.post<Student>(this.baseUrl, student);
+    public create(user: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(this.baseUrl, user);
     }
 
     public read(
@@ -24,8 +30,8 @@ export class StudentService {
         page: number,
         sort: string,
         direction: string
-    ): Observable<PagedResponse> {
-        return this.http.get<PagedResponse>(
+    ): Observable<PagedResponseModel> {
+        return this.http.get<PagedResponseModel>(
             `${this.baseUrl}?size=${size}&page=${page}&sort=${sort},${direction}`
         );
     }

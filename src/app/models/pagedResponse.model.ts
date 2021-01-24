@@ -1,4 +1,4 @@
-export class PagedResponse {
+export class PagedResponseModel {
   content: any[];
   first: boolean;
   last: boolean;
