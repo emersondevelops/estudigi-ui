@@ -1,0 +1,22 @@
+<div class="view">
+    <form class="login-form" [formGroup]="loginForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Login</mat-label>
+            <label for="username"></label>
+            <input matInput formControlName="username" name="username" id="username">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <label for="password"></label>
+            <input matInput formControlName="password" name="password" id="password">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="login()">Entrar</button>
+        <!--    <button mat-raised-button routerLink="/">Esqueci minha senha</button>-->
+
+    </form>
+</div>

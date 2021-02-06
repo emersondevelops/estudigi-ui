@@ -1,37 +1,41 @@
 <div class="view">
     <form [formGroup]="studentForm">
+
         <mat-form-field appearance="fill">
             <mat-label>Nome completo</mat-label>
-            <input matInput formControlName="fullName" name="fullName" placeholder="">
+            <label for="fullName"></label>
+            <input matInput formControlName="fullName" name="fullName" id="fullName" placeholder="">
             <mat-hint></mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Sexo</mat-label>
-            <input matInput formControlName="sex" name="sex" placeholder="">
-            <mat-hint></mat-hint>
+            <mat-select formControlName="sex">
+                <mat-option value="FEMALE">Feminino</mat-option>
+                <mat-option value="MALE">Masculino</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Data de nascimento</mat-label>
-            <input matInput [matDatepicker]="pickBirthDate" formControlName="birthDate" name="birthDate" disabled>
+            <label for="birthDate"></label>
+            <input matInput [matDatepicker]="pickBirthDate" formControlName="birthDate" name="birthDate" id="birthDate"
+                   disabled>
             <mat-datepicker-toggle matSuffix [for]="pickBirthDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickBirthDate  disabled="false"></mat-datepicker>
+            <mat-datepicker #pickBirthDate disabled="false"></mat-datepicker>
             <mat-hint>Clique no ícone para definir uma data</mat-hint>
         </mat-form-field>
 
-<!--        <mat-form-field appearance="fill">-->
-<!--            <mat-label>Ano</mat-label>-->
-<!--            <input matInput formControlName="year" name="year" placeholder="">-->
-<!--            <mat-hint></mat-hint>-->
-<!--        </mat-form-field>-->
+        <mat-form-field appearance="fill">
+            <mat-label>Função</mat-label>
+            <mat-select formControlName="role">
+                <mat-option value="STUDENT">Aluno</mat-option>
+                <mat-option value="TEACHER">Professor(a)</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-<!--        <mat-form-field appearance="fill">-->
-<!--            <mat-label>Turma</mat-label>-->
-<!--            <input matInput formControlName="className" name="className" placeholder="">-->
-<!--            <mat-hint></mat-hint>-->
-<!--        </mat-form-field>-->
     </form>
+
     <br/>
     <button mat-raised-button color="primary" (click)="createStudent()">Adicionar</button>
     <button mat-raised-button routerLink="/">Voltar</button>

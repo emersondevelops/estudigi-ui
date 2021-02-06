@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
@@ -52,19 +52,26 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {HttpInterceptorBasicAuthService} from './services/http-interceptor-basic-auth.service';
+import { LoginComponent } from './views/login/login.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         StudentListComponent,
         StudentCreateComponent,
-        NavComponent
+        NavComponent,
+        LoginComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         RouterModule.forRoot([
-            {path: '', component: StudentListComponent},
+            {path: '', component: LoginComponent},
+            {path: 'dashboard', component: DashboardComponent},
+            {path: 'student/list', component: StudentListComponent},
             {path: 'student/create', component: StudentCreateComponent}
         ]),
         BrowserAnimationsModule,
@@ -82,9 +89,14 @@ import {OverlayModule} from '@angular/cdk/overlay';
         MatInputModule,
         MatNativeDateModule,
         ReactiveFormsModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatRadioModule
     ],
-    providers: [],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

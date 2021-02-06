@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
+import {CommonService} from '../../../services/common.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-student-create',
@@ -14,7 +16,9 @@ export class StudentCreateComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private userService: UserService
+        private userService: UserService,
+        private commonService: CommonService,
+        private router: Router
     ) {
     }
 
@@ -26,7 +30,7 @@ export class StudentCreateComponent implements OnInit {
             email: [null, {disabled: true}],
             login: [null, {disabled: true}],
             password: [null, {disabled: true}],
-            role: ['STUDENT', [Validators.required]],
+            role: [null, [Validators.required]],
             phone: [null, {disabled: true}],
             address: [null, {disabled: true}],
             otherInfo: [null, {disabled: true}],
@@ -34,8 +38,23 @@ export class StudentCreateComponent implements OnInit {
     }
 
     createStudent(): void {
-        this.userService.create(this.studentForm.value)
-            .subscribe(response => {});
-        this.studentForm.reset();
+        if (this.formIsValid()) {
+            this.userService.create(this.studentForm.value)
+                .subscribe(() => {
+                    this.commonService.showMessage('Adicionado(a) com sucesso!');
+                    this.router.navigate(['/']).then(() => {
+                    });
+                });
+            this.studentForm.reset();
+        } else {
+            this.commonService.showMessage('Formulário incompleto!');
+        }
+    }
+
+    formIsValid(): boolean {
+        return this.studentForm.value.fullName !== null
+            && this.studentForm.value.sex !== null
+            && this.studentForm.value.birthDate !== null
+            && this.studentForm.value.role !== null;
     }
 }

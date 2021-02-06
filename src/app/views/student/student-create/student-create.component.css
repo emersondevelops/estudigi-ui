@@ -10,3 +10,7 @@ form {
     align-items: flex-start;
     align-content: stretch;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}

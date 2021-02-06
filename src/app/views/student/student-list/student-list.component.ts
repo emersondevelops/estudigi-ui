@@ -12,7 +12,7 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class StudentListComponent implements OnInit {
 
-    constructor(private userService: UserService, private router: Router) {
+    constructor(private userService: UserService) {
     }
 
     @ViewChild(MatSort) sort: MatSort;
@@ -20,10 +20,10 @@ export class StudentListComponent implements OnInit {
 
     dataSource;
     displayedColumns = [
-        'userId',
+        'id',
         'fullName'
     ];
-    length: number;
+    length = null;
     pageSize = 10;
     pageIndex = 0;
     pageSort = 'fullName';
@@ -31,7 +31,19 @@ export class StudentListComponent implements OnInit {
     pageSizeOptions = [5, 10, 25, 100];
 
     ngOnInit(): void {
-        this.getUsers();
+        this.userService
+            .read(
+                this.pageSize,
+                this.pageIndex,
+                this.pageSort,
+                this.sortDirection
+            )
+            .subscribe((response) => {
+                this.dataSource = new MatTableDataSource(response.content);
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
+                this.length = response.totalElements;
+            });
     }
 
     getUsers(): void {
@@ -48,10 +60,6 @@ export class StudentListComponent implements OnInit {
             )
             .subscribe((response) => {
                 this.dataSource = new MatTableDataSource(response.content);
-                this.dataSource.sort = this.sort;
-                this.dataSource.paginator = this.paginator;
-                this.length = response.totalElements;
-                // console.log(response.content);
             });
     }
 

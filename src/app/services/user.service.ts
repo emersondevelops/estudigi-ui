@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {UserModel} from '../models/user.model';
 import {Observable} from 'rxjs';
 import {PagedResponseModel} from '../models/pagedResponse.model';
@@ -11,12 +11,6 @@ import {PagedResponseModel} from '../models/pagedResponse.model';
 export class UserService {
 
     baseUrl = `${environment.api}/user`;
-
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
 
     constructor(private http: HttpClient) {
     }
