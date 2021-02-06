@@ -1,0 +1,31 @@
+.view {
+    margin: 20px;
+}
+
+.view-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.title button {
+    margin-left: 15px;
+}
+
+.actions button {
+    margin-left: 15px;
+}
+
+mat-card-title {
+    margin: 0;
+}
+
+table {
+    width: 100%;
+}

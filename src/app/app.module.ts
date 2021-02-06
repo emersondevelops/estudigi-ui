@@ -56,6 +56,7 @@ import {HttpInterceptorBasicAuthService} from './services/http-interceptor-basic
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { QuestionListComponent } from './views/question/question-list/question-list.component';
+import { TestListComponent } from './views/test/test-list/test-list.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +66,8 @@ import { QuestionListComponent } from './views/question/question-list/question-l
         NavComponent,
         LoginComponent,
         DashboardComponent,
-        QuestionListComponent
+        QuestionListComponent,
+        TestListComponent
     ],
     imports: [
         BrowserModule,
@@ -76,6 +78,7 @@ import { QuestionListComponent } from './views/question/question-list/question-l
             {path: 'student/list', component: StudentListComponent},
             {path: 'student/create', component: StudentCreateComponent},
             {path: 'question/list', component: QuestionListComponent},
+            {path: 'test/list', component: TestListComponent},
         ]),
         BrowserAnimationsModule,
         MatTableModule,
