@@ -1,6 +1,12 @@
-.toolbar {
+.nav-bar {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.name {
+    display: flex;
     align-items: center;
 }

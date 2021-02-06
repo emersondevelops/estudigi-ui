@@ -13,14 +13,14 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <!--Barra superior-->
-        <mat-toolbar>
-            <div class="toolbar">
+        <mat-toolbar class="nav-bar">
+            <div class="name">
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <span>EstuDigi</span>
-                <button mat-raised-button color="secondary" (click)="logout()">Sair</button>
+                <span style="margin-left: 15px">EstuDigi</span>
             </div>
+            <button mat-raised-button (click)="logout()">Sair</button>
         </mat-toolbar>
         <router-outlet></router-outlet>
     </mat-sidenav-content>

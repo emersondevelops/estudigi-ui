@@ -2,16 +2,16 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {StudentService} from '../student.service';
+import {QuestionService} from '../question.service';
 
 @Component({
-    selector: 'app-student-list',
-    templateUrl: './student-list.component.html',
-    styleUrls: ['./student-list.component.scss']
+  selector: 'app-question-list',
+  templateUrl: './question-list.component.html',
+  styleUrls: ['./question-list.component.css']
 })
-export class StudentListComponent implements OnInit {
+export class QuestionListComponent implements OnInit {
 
-    constructor(private studentService: StudentService) {
+    constructor(private questionService: QuestionService) {
     }
 
     @ViewChild(MatSort) sort: MatSort;
@@ -20,17 +20,20 @@ export class StudentListComponent implements OnInit {
     dataSource;
     displayedColumns = [
         'id',
-        'full_name'
+        'subject',
+        'grade',
+        'topic',
+        'title'
     ];
     length = null;
     pageSize = 5;
     pageIndex = 0;
-    pageSort = 'full_name';
+    pageSort = 'id';
     sortDirection = 'asc';
     pageSizeOptions = [5, 10, 25, 100];
 
     ngOnInit(): void {
-        this.studentService
+        this.questionService
             .read(
                 this.pageSize,
                 this.pageIndex,
@@ -45,12 +48,12 @@ export class StudentListComponent implements OnInit {
             });
     }
 
-    getStudents(): void {
+    getAll(): void {
 
         // Talvez essa limpeza definindo como null não seja necessária.
         // this.dataSource = null;
 
-        this.studentService
+        this.questionService
             .read(
                 this.pageSize,
                 this.pageIndex,
@@ -65,12 +68,13 @@ export class StudentListComponent implements OnInit {
     changePage(event): void {
         this.pageSize = event.pageSize;
         this.pageIndex = event.pageIndex;
-        this.getStudents();
+        this.getAll();
     }
 
     changeSort(event): void {
         this.pageSort = event.active;
         this.sortDirection = event.direction;
-        this.getStudents();
+        this.getAll();
     }
+
 }

@@ -55,6 +55,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {HttpInterceptorBasicAuthService} from './services/http-interceptor-basic-auth.service';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { QuestionListComponent } from './views/question/question-list/question-list.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
         StudentCreateComponent,
         NavComponent,
         LoginComponent,
-        DashboardComponent
+        DashboardComponent,
+        QuestionListComponent
     ],
     imports: [
         BrowserModule,
@@ -72,7 +74,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
             {path: '', component: LoginComponent},
             {path: 'dashboard', component: DashboardComponent},
             {path: 'student/list', component: StudentListComponent},
-            {path: 'student/create', component: StudentCreateComponent}
+            {path: 'student/create', component: StudentCreateComponent},
+            {path: 'question/list', component: QuestionListComponent},
         ]),
         BrowserAnimationsModule,
         MatTableModule,
