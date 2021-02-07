@@ -29,12 +29,3 @@ mat-card-title {
 table {
     width: 100%;
 }
-
-.action-button {
-    height: 30px;
-    width: 30px;
-}
-
-.action-button mat-icon {
-    font-size: 12pt;
-}

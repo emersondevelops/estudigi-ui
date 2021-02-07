@@ -57,6 +57,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { QuestionListComponent } from './views/question/question-list/question-list.component';
 import { TestListComponent } from './views/test/test-list/test-list.component';
+import { TestResultListComponent } from './views/test-result/test-result-list/test-result-list.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { TestListComponent } from './views/test/test-list/test-list.component';
         LoginComponent,
         DashboardComponent,
         QuestionListComponent,
-        TestListComponent
+        TestListComponent,
+        TestResultListComponent
     ],
     imports: [
         BrowserModule,
@@ -79,6 +81,7 @@ import { TestListComponent } from './views/test/test-list/test-list.component';
             {path: 'student/create', component: StudentCreateComponent},
             {path: 'question/list', component: QuestionListComponent},
             {path: 'test/list', component: TestListComponent},
+            {path: 'test-result/by-test-id/:testId', component: TestResultListComponent},
         ]),
         BrowserAnimationsModule,
         MatTableModule,

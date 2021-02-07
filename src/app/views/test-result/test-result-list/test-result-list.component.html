@@ -1,0 +1,85 @@
+<div class="view">
+    <mat-card>
+        <div class="view-nav">
+            <div class="title">
+                <mat-card-title>Respostas enviadas</mat-card-title>
+                <button mat-raised-button (click)="getAll()">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+            <div class="actions">
+<!--                <button mat-raised-button routerLink="/test/create">-->
+<!--                    <mat-icon>add</mat-icon>-->
+<!--                    <span>Cadastrar</span></button>-->
+                <button mat-raised-button routerLink="/test/list">
+                    <mat-icon>chevron_left</mat-icon>
+                    <span>Voltar</span></button>
+            </div>
+        </div>
+    </mat-card>
+    <br/>
+
+    <mat-card>
+        <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            matSortDirection
+            (matSortChange)="changeSort($event)"
+        >
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="test_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome no exercício</th>
+                <td mat-cell *matCellDef="let row">{{ row.test.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="full_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Aluno(a)</th>
+                <td mat-cell *matCellDef="let row">{{ row.user.fullName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="trial">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Tentativa</th>
+                <td mat-cell *matCellDef="let row">{{ row.trial }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Pontuação</th>
+                <td mat-cell *matCellDef="let row">{{ row.score }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="sent_at">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Envio</th>
+                <td mat-cell *matCellDef="let row">{{ row.sentAt }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="teacher_comment">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentários</th>
+                <td mat-cell *matCellDef="let row">{{ row.teacherComment }}</td>
+            </ng-container>
+
+<!--            <ng-container matColumnDef="actions">-->
+<!--                <th mat-header-cell *matHeaderCellDef>Ações</th>-->
+<!--                <td mat-cell *matCellDef="let row">-->
+<!--                    <button routerLink="/test-result/by-test-id/{{ row.id }}" class="action-button" color="secondary" mat-mini-fab aria-label="Example icon-button">-->
+<!--                        <mat-icon>assignment</mat-icon>-->
+<!--                    </button>-->
+<!--                </td>-->
+<!--            </ng-container>-->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+            [length]="length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="changePage($event)"
+            showFirstLastButtons
+        ></mat-paginator>
+    </mat-card>
+</div>

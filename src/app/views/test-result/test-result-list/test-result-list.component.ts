@@ -2,16 +2,18 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {TestService} from '../test.service';
+import {TestResultService} from '../test-result.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-test-list',
-  templateUrl: './test-list.component.html',
-  styleUrls: ['./test-list.component.css']
+  selector: 'app-test-result-list',
+  templateUrl: './test-result-list.component.html',
+  styleUrls: ['./test-result-list.component.css']
 })
-export class TestListComponent implements OnInit {
+export class TestResultListComponent implements OnInit {
 
-    constructor(private testService: TestService) {
+    constructor(private testResultService: TestResultService,
+                private activatedRoute: ActivatedRoute) {
     }
 
     @ViewChild(MatSort) sort: MatSort;
@@ -20,12 +22,12 @@ export class TestListComponent implements OnInit {
     dataSource;
     displayedColumns = [
         'id',
-        'name',
-        'class_groups',
-        'question_value',
-        'repeat_times',
-        'created_by',
-        'actions'
+        'test_name',
+        'full_name',
+        'trial',
+        'score',
+        'sent_at',
+        'teacher_comment',
     ];
     length = null;
     pageSize = 5;
@@ -33,14 +35,16 @@ export class TestListComponent implements OnInit {
     pageSort = 'id';
     sortDirection = 'asc';
     pageSizeOptions = [5, 10, 25, 100];
+    testId = this.activatedRoute.snapshot.paramMap.get('testId');
 
     ngOnInit(): void {
-        this.testService
-            .read(
+        this.testResultService
+            .readByTestId(
                 this.pageSize,
                 this.pageIndex,
                 this.pageSort,
-                this.sortDirection
+                this.sortDirection,
+                this.testId
             )
             .subscribe((response) => {
                 this.dataSource = new MatTableDataSource(response.content);
@@ -51,12 +55,13 @@ export class TestListComponent implements OnInit {
     }
 
     getAll(): void {
-        this.testService
-            .read(
+        this.testResultService
+            .readByTestId(
                 this.pageSize,
                 this.pageIndex,
                 this.pageSort,
-                this.sortDirection
+                this.sortDirection,
+                this.testId
             )
             .subscribe((response) => {
                 this.dataSource = new MatTableDataSource(response.content);
