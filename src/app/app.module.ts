@@ -101,7 +101,8 @@ import { TestResultListComponent } from './views/test-result/test-result-list/te
         MatDatepickerModule,
         MatSnackBarModule,
         MatSelectModule,
-        MatRadioModule
+        MatRadioModule,
+        MatTooltipModule
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true}
